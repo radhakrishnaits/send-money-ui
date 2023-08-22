@@ -96,12 +96,21 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "node_modules/ng-uikit-pro-standard/assets/scss/bootstrap/bootstrap.scss",
+              "node_modules/ng-uikit-pro-standard/assets/scss/mdb.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "855fee20-e707-46d1-905c-815dc418f22e"
   }
 }

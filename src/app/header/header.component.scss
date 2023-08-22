@@ -1,0 +1,27 @@
+/* header.component.scss */
+.wu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #212A33;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo img {
+    width: 180px;
+  }
+  
+  .navigation {
+    a {
+      margin-right: 20px;
+      color: #FFF;
+      text-decoration: none;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #0079b8;
+      }
+    }
+  }
+  
