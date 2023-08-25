@@ -1,0 +1,99 @@
+ <form class="form-container" [formGroup]="recieverForm" (ngSubmit)="onFormSubmit(recieverForm.value)">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Reciever</mat-card-title>
+		</mat-card-header>
+
+
+		<mat-card-content>
+			<div class="row">
+				<div class="col-md-6"> 
+					<mat-form-field class="full-width">
+						<mat-label>First Name</mat-label>
+						<input formControlName="firstName" type="text" matInput placeholder="First Name"> 
+					</mat-form-field>
+					<div *ngIf="reciever['firstName'].touched && reciever['firstName'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['firstName'].errors['required']">First name is required</div>
+					</div>
+				</div>
+				
+				<div class="col-md-6"> 
+					<mat-form-field class="full-width">
+						<mat-label>Last Name</mat-label>
+						<input formControlName="lastName" type="text" matInput placeholder="Last Name"> 
+					</mat-form-field>
+					<div *ngIf="reciever['lastName'].touched && reciever['lastName'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['lastName'].errors['required']">Last name is required</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>Account Number</mat-label>
+						<input formControlName="accountNumber" type="text" matInput  placeholder="Account Number"> 
+					</mat-form-field>
+					<div *ngIf="reciever['accountNumber'].touched && reciever['accountNumber'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['accountNumber'].errors['required']">Account number is required</div>
+						<div *ngIf="reciever['accountNumber'].errors['minlength']">
+							Account number must be at least 10 characters
+						</div>
+						<div *ngIf="reciever['accountNumber'].errors['maxlength']">
+							Account number must not exceed 14 characters
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>Confirm Account Number</mat-label>
+						<input formControlName="cAccountNumber" type="text" matInput placeholder="Confirm Account Number"> 
+					</mat-form-field>
+					<div *ngIf="reciever['cAccountNumber'].touched && reciever['cAccountNumber'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['cAccountNumber'].errors['required']">Confirm Account number is required</div>
+						<div *ngIf="reciever['cAccountNumber'].errors['matching']">
+							Confirm Account number does not match
+						  </div>
+					</div>
+				</div>
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>IFSC Code</mat-label>
+						<input formControlName="ifscCode" type="text" (change)="onIfscCodeCheck($event)" matInput placeholder="IFSC Code"> 
+					</mat-form-field>
+					<div *ngIf="reciever['ifscCode'].touched && reciever['ifscCode'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['ifscCode'].errors['required']">IFSC code is required</div>
+						<div *ngIf="reciever['ifscCode'].errors['pattern']">
+							Please specify a valid IFSC CODE
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>Bank Name</mat-label>
+						<input formControlName="bankName" type="text" matInput placeholder="Bank Name" readonly> 
+					</mat-form-field>
+					<div *ngIf="reciever['bankName'].touched && reciever['bankName'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['bankName'].errors['required']">Bank name is required</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>Branch Name</mat-label>
+						<input formControlName="branchName" type="text" matInput placeholder="Branch Name" readonly> 
+					</mat-form-field>
+					<div *ngIf="reciever['branchName'].touched && reciever['branchName'].errors" class="invalid-feedback">
+						<div *ngIf="reciever['branchName'].errors['required']">Branch name is required</div>
+					</div>
+				</div>
+				
+			</div>
+		</mat-card-content>
+		
+		<mat-card-actions>
+			<button mat-raised-button="" color="primary" [disabled]="!recieverForm.valid">Next</button>
+		 </mat-card-actions>
+
+	</mat-card>
+
+</form>

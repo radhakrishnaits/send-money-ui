@@ -1,0 +1,8 @@
+[
+    {"code": "PUNB", "ifsc": "PUNB0244200", "bank": "Punjab National Bank", "branch": "Pune"},
+    {"code": "PSIB",  "ifsc": "PSIB0000001", "bank": "Punjab & Sind Bank", "branch": "Punjab"},
+    {"code": "ICIC", "ifsc": "ICIC00ADRSH", "bank": "ICICI Bank", "branch": "Pune"},
+    {"code": "HDFC", "ifsc": "HDFC0999999", "bank": "HDFC Bank", "branch": "Pune"},
+    {"code": "UTIB", "ifsc": "UTIB0000248", "bank": "Axis Bank", "branch": "Mumbai"},
+    {"code": "CITI", "ifsc": "CITI0RTGSMI", "bank": "CITI Bank", "branch": "Pune"}
+]
