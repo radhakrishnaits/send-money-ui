@@ -4,7 +4,7 @@ import { RecieverComponent } from './reciever/reciever.component';
 import { SenderComponent } from './sender/sender.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/reciever', pathMatch: 'full' },
+  { path: '', redirectTo: '/sender', pathMatch: 'full' },
   { path: 'reciever', component: RecieverComponent },
   { path: 'sender' , component: SenderComponent}
 ];

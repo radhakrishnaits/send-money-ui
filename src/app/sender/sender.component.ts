@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, startWith, map } from 'rxjs';
 import countries from 'src/country.json';
 
@@ -30,7 +31,7 @@ export class SenderComponent implements OnInit {
   filteredOptions!: Observable<Option[]>; 
   recieverCurrencyCode: string = "INR";
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder,private router: Router){
 
     this.senderForm = this.fb.group({
       countryName: new FormControl({id: 89, label: 'India', currencyCode: 'INR'}, Validators.required),
@@ -79,6 +80,10 @@ export class SenderComponent implements OnInit {
 
   recieverOption(){
     console.log("Reciever")
+  }
+
+  navigateToReciever() {
+    this.router.navigate(['/reciever']);
   }
 }
 
