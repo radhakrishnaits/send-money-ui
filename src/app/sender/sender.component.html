@@ -1,0 +1,61 @@
+<!-- <div>
+    <div></div>
+    <p>Congratulations! Your first transfer fee* is on us. Continue sending to secure your $0 transfer fee now. *FX gains apply. Not available for credit cards and transfers to Cuba.</p>
+
+</div> -->
+<div class="container">
+    <h2>Send Money Online</h2>
+    <form [formGroup]="senderForm" class="sender-form">
+        <div class="heading">Your receiver’s country and send amount</div>
+        <mat-form-field class="sender-full-width" appearance="outline">
+            <mat-icon matPrefix>flag</mat-icon>
+            <mat-label>Send To</mat-label>
+            <input type="text" placeholder="" aria-label="String" matInput formControlName="countryName"
+                [matAutocomplete]="auto" />
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayLabelFn" (optionSelected)="selectedCountry($event.option.value)">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option.label}}
+                </mat-option>
+            </mat-autocomplete> 
+        </mat-form-field>
+        <div class="heading2">
+            <mat-icon>lightbulb</mat-icon>
+            <p>We send over 350,000 online money transfers to India every month.</p>
+        </div>
+        <div class="heading3">
+            <mat-form-field class="sender-half-width" appearance="outline">
+                <mat-label>Send Amount</mat-label>
+                <input type="text" placeholder="" aria-label="String" matInput  />
+                <span matSuffix>USD</span>
+            </mat-form-field>
+            <i class="fa-solid fa-right-left"></i>
+            <mat-form-field class="sender-half-width" appearance="outline">
+                <mat-label>Receive Amount</mat-label>
+                <input type="text" placeholder="" aria-label="String" matInput />
+                <span matSuffix>{{recieverCurrencyCode}}</span>
+            </mat-form-field>
+        </div>
+        <p>1.00 USD = 82.6338 Indian Rupee (INR) 2</p>
+      <hr>
+      <div>
+          <p class="heading">How does your receiver want the money?</p>
+          <img src="../../assets/bankAccount.png" alt="Bank Account" (click) = "recieverOption()">
+          <div class="heading2">
+            <mat-icon>lightbulb</mat-icon>
+            <p>Your money is credited in real time to SBI, ICICI, HFDC, Axis Bank and more.</p>
+          </div>
+      </div>
+      <hr>
+      <div>
+        <p class="heading"> How would you like to pay?</p>
+        <img src="../../assets/bankAccount.png" alt="Bank Account" (click) = "recieverOption()">
+        <div class="heading2">
+            <mat-icon>lightbulb</mat-icon>
+            <p>You have chosen the best price option.</p>
+        </div>
+      </div>
+      <hr>
+      <button mat-raised-button color="primary">Primary</button>
+    </form>
+</div>

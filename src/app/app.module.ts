@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconRegistry,MatIconModule } from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClient } from '@angular/common/http';
+import { SenderModule } from './sender/sender.module';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import { HttpClient } from '@angular/common/http';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    SenderModule
   ],
   providers: [MatIconRegistry],
   bootstrap: [AppComponent]
