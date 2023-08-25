@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators ,FormsModule,NgForm, FormControl, AbstractControl } from '@angular/forms';  
 import { RecieverService } from '../services/reciever.service';
@@ -21,7 +22,8 @@ export class RecieverComponent implements OnInit {
     branchName: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder, private recieverService: RecieverService) {
+  constructor(private formBuilder: FormBuilder, private recieverService: RecieverService,
+    private router: Router) {
     this.recieverForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -89,4 +91,7 @@ export class RecieverComponent implements OnInit {
     console.log(this.recieverService.reciever);   // for get
   } 
 
+  navigateToSummary() {
+    this.router.navigate(['/summary']);
+  }
 }
