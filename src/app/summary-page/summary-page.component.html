@@ -1,0 +1,59 @@
+    <div>
+            <button mat-raised-button color="primary" (click)="next()">Primary</button>
+    </div>
+    <div *ngIf ='testing'class="main-container">
+        <mat-card>
+            <span class="summary">Summary</span>
+            <div class="padding-bottom-20"></div>
+                <div>
+                    <span style="font-size: 14px;">{{subTitle}}</span>
+                    <sup class="wu-superscript" style="left: 0;">2</sup>
+                </div>
+                <hr>
+            <div class="padding-bottom-10"></div>
+            <div>
+               <span class="exchange-rate line-height-16" style="float: right;"> {{currencyValueFrom}} {{currencySource}} = {{currencyValutTo}} {{currencyTarget}}</span> <br>
+               <div class="padding-bottom-20"></div>
+               <hr>
+               <span  style="padding-left: 12%;" class="textFields">Transfer amount</span> <span style="float: right;  font-size: 18px;"> {{amount}} {{currencySource}}</span><br>
+               <div class="padding-bottom-15"></div>
+               <span style="padding-left: 20%;" class="textFields"> Transfer fee</span> <sup class="wu-superscript" style="left: 0;">2</sup>  <span style="float: right; font-size: 18px;">+ {{fee}} {{currencySource}}</span><br>
+               <div class="padding-bottom-15"></div>
+               <span style="padding-left: 18%;" class="textFields"> Transfer total</span>  <span style="float: right; font-size: 18px;">{{total}} {{currencySource}}</span><br>
+               
+            </div>
+            <div class="padding-bottom-20"></div>
+            <div>
+                <span  style="text-align: right; font-size: 14px;">Total to receiver</span>
+            </div>
+            <hr>
+            <div>
+              <span style="float: right; font-size: 18px;"> {{currencyTarget}}</span>  
+              <div class="padding-bottom-10"></div>
+            </div>
+            
+            <div class="padding-bottom-20"></div>
+            <hr>
+            <div>
+                <span style="text-align: right;font-size: 14px;">Service time: <sup class="wu-superscript" style="left: 0;">1,8</sup></span> <span style="float: right; font-size: 18px;">Next banking day</span>
+             </div>
+         </mat-card>
+         <div class="actionButtons">
+            <button  mat-raised-button color="primary" (click)="proceed()">Proceed</button>     
+            <button  mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+         </div>
+    </div>
+    <div  *ngIf ='!testing' class="main-container">
+        <div>
+            <mat-card>
+                <span class="summary">Summary</span>
+                    <div class="padding-bottom-10"></div>
+                        <div>
+                            <span class="subTitle2">{{subTitle}}</span>
+                        </div>
+                     <div class="padding-bottom-15"></div>
+                     <div class="padding-bottom-20"></div>
+             </mat-card>
+         </div>
+    </div>
+
