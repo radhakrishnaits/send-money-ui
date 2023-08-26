@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment'
 import IfscJson from '../../assets/ifsc.json'
 
 @Injectable({
@@ -20,9 +21,12 @@ public set reciever(data:any) {
 }
   
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
  
+  postRecieverDetails(formData:any) {
+    return this.http.post(`${environment.apiUrl+'beneficiary/add'}` ,formData);
+  }
 
   getIfscCode() {
     return this.ifscList;

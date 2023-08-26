@@ -18,8 +18,8 @@ export class RecieverComponent implements OnInit {
     accountNumber: new FormControl(''),
     cAccountNumber: new FormControl(''),
     ifscCode: new FormControl(''),
-    bankName: new FormControl(''),
-    branchName: new FormControl(''),
+    bankName: new FormControl({disabled:true}),
+    branchName: new FormControl({disabled:true}),
   });
 
   constructor(private formBuilder: FormBuilder, private recieverService: RecieverService,
@@ -84,11 +84,30 @@ export class RecieverComponent implements OnInit {
 
   
 
-  onFormSubmit(formData: NgForm) {  
-    console.log(formData);  
+  onFormSubmit(formData: any) {
+    
+    delete formData.cAccountNumber;
+    delete formData.bankName;   
+    delete formData.branchName;
+    formData['country'] = "India";
+    formData['senderID'] = 0;
+    formData['status'] = "success";
+
+    console.log(formData); 
     this.recieverService.reciever = formData; // for set
     console.log('-------------------');  
     console.log(this.recieverService.reciever);   // for get
+    this.recieverService.postRecieverDetails(formData).subscribe(
+      (response) => {
+        console.log('Response from backend:', response);
+        this.navigateToSummary();
+        // Handle the response from the backend if needed
+      },
+      (error) => {
+        console.error('Error sending data:', error);
+        // Handle errors if needed
+      }
+    );
   } 
 
   navigateToSummary() {
