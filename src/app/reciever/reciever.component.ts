@@ -100,7 +100,7 @@ export class RecieverComponent implements OnInit {
     this.recieverService.postRecieverDetails(formData).subscribe(
       (response) => {
         console.log('Response from backend:', response);
-        this.navigateToSummary();
+        this.navigateToCard();
         // Handle the response from the backend if needed
       },
       (error) => {
@@ -110,7 +110,7 @@ export class RecieverComponent implements OnInit {
     );
   } 
 
-  navigateToSummary() {
-    this.router.navigate(['/summary']);
+  navigateToCard() {
+    this.router.navigate(['/card']);
   }
 }

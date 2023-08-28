@@ -11,7 +11,7 @@
 }
 
 .form-container{
-    margin: 10px 100px;
+    margin: 30px 100px;
 }
 
 .invalid-feedback {
@@ -23,6 +23,10 @@ button {
     width: 100%;
 }
 
+.card-button-action {
+    margin-top: 10px;
+}
+
 .btn-primary {
     background-color: #045F86;
     border-color: #045F86;
@@ -32,6 +36,17 @@ button {
     margin: 30px 0 20px;
     font-size: 18px;
     line-height: 1;
+}
+
+.card-expiry {
+    float: left;
+    width: 50%;
+}
+
+.card-ccv {
+    float: right;
+    margin-left: 10px;
+    width: 40%;
 }
 
 @media only screen and (max-width : 768px) {

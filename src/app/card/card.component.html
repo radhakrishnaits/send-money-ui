@@ -1,0 +1,61 @@
+<form class="form-container" [formGroup]="cardForm" (ngSubmit)="onCardFormSubmit(cardForm.value)">
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>Debit or credit card information</mat-card-title>
+		</mat-card-header>
+
+
+		<mat-card-content>
+			<div class="row">
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>Name On Card</mat-label>
+						<input formControlName="nameOnCard" type="text" matInput placeholder="Enter Name"> 
+					</mat-form-field>
+					<div *ngIf="card['nameOnCard'].touched && card['nameOnCard'].errors" class="invalid-feedback">
+						<div *ngIf="card['nameOnCard'].errors['required']">Name is required</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12"> 
+					<mat-form-field class="full-width">
+						<mat-label>Crad Number</mat-label>
+						<input formControlName="cardNumber" type="text" maxlength="16" matInput placeholder="Enter Card Number"> 
+					</mat-form-field>
+					<div *ngIf="card['cardNumber'].touched && card['cardNumber'].errors" class="invalid-feedback">
+						<div *ngIf="card['cardNumber'].errors['required']">Please enter a valid card number</div>
+					</div>
+				</div>
+				
+				<div class="col-md-6 card-expiry"> 
+					<mat-form-field class="full-width">
+						<mat-label>Card Expiry</mat-label>
+						<input formControlName="cardExpiry" type="text" maxlength="5" matInput  placeholder="MM/YY"> 
+					</mat-form-field>
+					<div *ngIf="card['cardExpiry'].touched && card['cardExpiry'].errors" class="invalid-feedback">
+						<div *ngIf="card['cardExpiry'].errors['required']">Enter an expiry date</div>
+					</div>
+				</div>
+				<div class="col-md-6 card-ccv"> 
+					<mat-form-field class="full-width">
+						<mat-label>CCV</mat-label>
+						<input formControlName="ccv" type="text"  maxlength="4" matInput placeholder="CCCV"> 
+					</mat-form-field>
+					<div *ngIf="card['ccv'].touched && card['ccv'].errors" class="invalid-feedback">
+						<div *ngIf="card['ccv'].errors['required']">Please enter CVV</div>
+					</div>
+				</div>
+				
+			</div>
+		</mat-card-content>
+		
+		<mat-card-actions class="card-button-action">
+			<button mat-raised-button [disabled]="!cardForm.valid" data-linkname="button-smo-continue" amplitude-id="button-smo-continue"
+             class="btn btn-primary btn-lg btn-block no-margin ng-star-inserted" aria-label="Continue to next page">
+				<bdi _ngcontent-serverapp-c140="" class="ng-scope">Continue</bdi>
+			</button>
+		 </mat-card-actions>
+
+	</mat-card>
+
+</form>

@@ -25,6 +25,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { HomeComponent } from './home/home.component';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatDialogModule} from '@angular/material/dialog';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -35,7 +36,8 @@ import { MatDialogModule} from '@angular/material/dialog';
     FooterComponent,
 	  RecieverComponent,
     SummaryPageComponent,
-    HomeComponent
+    HomeComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
