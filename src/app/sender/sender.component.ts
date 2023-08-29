@@ -32,6 +32,7 @@ export class SenderComponent implements OnInit{
   options: any = this.mapCountries (this.countries) ;
   filteredOptions!: Observable<Option[]>; 
   recieverCurrencyCode: string = "INR";
+  convertionURL: string = '';
 
   constructor(private fb: FormBuilder,private router: Router, private dataService: DataService, private http: HttpService){
 
@@ -93,6 +94,8 @@ export class SenderComponent implements OnInit{
         'receiverMoney': data.receiverAmount
       })
   });
+
+  this.convertionURL = "1.00 INR = `this.senderForm.controls['receiverMoney'].value` + ` recieverCode`";
   }
 
   displayLabelFn(option: Option|null) {

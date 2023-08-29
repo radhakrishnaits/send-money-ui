@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider'
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
    SenderComponent
@@ -28,7 +29,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete'
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatButtonModule, 
-    MatDividerModule
+    MatDividerModule,
+    MatCardModule
     ],
   providers: [],
   exports:[

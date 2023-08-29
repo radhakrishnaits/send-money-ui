@@ -52,3 +52,29 @@ button {
     font-size: 18px;
     line-height: 1;
 }
+
+.sender-card {
+    margin-top: 40px;
+    max-width: 180px;
+    margin-left: 15px;
+    background-color:#045F86 ;
+    text-align: center;
+    color: #fff;
+    font-size: large;
+    margin-bottom: 20px;
+  }
+
+  .fa-credit-card{
+    padding-left: 12px;
+    margin: 35px;
+    color: #fff;
+  }
+
+  span i {
+    background-color: transparent;
+    width: 55px;
+    opacity: 1;
+    position: absolute;
+    margin-top: -21px;
+    margin-left: 12px;
+  }

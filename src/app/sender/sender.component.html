@@ -36,7 +36,7 @@
                 <span matSuffix>{{recieverCurrencyCode}}</span>
             </mat-form-field>
         </div>
-        <p>1.00 USD = 82.6338 Indian Rupee (INR) 2</p>
+        <p *ngIf = "senderForm.controls['receiverMoney'].value">{{convertionURL}}</p>
       <hr>
       <div>
           <p class="heading">How does your receiver want the money?</p>
@@ -49,7 +49,16 @@
       <hr>
       <div>
         <p class="heading"> How would you like to pay?</p>
-        <img src="../../assets/bankAccount.png" alt="Bank Account" (click) = "recieverOption()">
+        <mat-card class="sender-card">
+            <mat-card-header>
+                <span><i class="fa-solid fa-circle-check fa-2xl " style="color: #56e444;"></i></span>
+              <mat-card-title><i class="fa-solid fa-credit-card fa-2xl"></i>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Card Details</p>
+            </mat-card-content>
+          </mat-card>
         <div class="heading2">
             <mat-icon>lightbulb</mat-icon>
             <p>You have chosen the best price option.</p>
