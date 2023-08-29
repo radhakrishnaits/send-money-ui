@@ -24,9 +24,9 @@ public set reciever(data:any) {
   constructor(private http: HttpClient) { }
 
  
-  postRecieverDetails(formData:any) {
-    return this.http.post(`${environment.apiUrl+'beneficiary/add'}` ,formData);
-  }
+  // postRecieverDetails(formData:any) {
+  //   return this.http.post(`${environment.baseUrl+'beneficiary/add'}` ,formData);
+  // }
 
   getIfscCode() {
     return this.ifscList;

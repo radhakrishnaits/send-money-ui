@@ -1,52 +1,98 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { HttpService } from '../http.service';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary-page',
   templateUrl: './summary-page.component.html',
   styleUrls: ['./summary-page.component.scss']
 })
-export class SummaryPageComponent implements OnInit, AfterContentInit {
+export class SummaryPageComponent implements OnInit {
 
-  constructor(private _snackBar: MatSnackBar) { }
-  testing= true;
-  // subTitle = " "
- subTitle= "To know the exact exchange rate and pricing summary, select a payment and payout method."
- currencySource = "INR";
- currencyTarget = "USD";
- amount = 0;
- fee = 0;
- currencyValueFrom = 0;
- currencyValutTo=0;
- total= this.amount+ this.fee;
- totalTargetCurrency = 0;
+  constructor(private router: Router, private httpService:HttpService,
+    private snackBar: MatSnackBar,  private dataService: DataService, ) { }
+
+  subTitle= "Exachange Rate"
+  currencyValueFrom = 1;
+  currencySource = "INR";
+  targetCurrency=0;
+  currencyTarget = "";
+  amount = 0;
+  transactionFee = 0;
+  transactionTotal=0;
+  totalTargetCurrency = 0;
+  moneyTobeTransfer=0 ;
+
+ ngOnInit(): void {
+    this.amount = this.dataService.amount;
+    this.currencyTarget= this.dataService.currencyCode;
+    this.getTransactioRates();
+}
+
+getTransactioRates(){
+ 
+  this.httpService.getTransactionRates(this.currencyTarget, 1).subscribe((data)=>{
+    this.targetCurrency =data.receiverAmount;
+    console.log('test');
+    this.transactionFee = data.commission;
+    this.transactionTotal =  this.amount + this.transactionFee;
+    this.moneyTobeTransfer =  Math.round( this.amount * this.targetCurrency);
+  });
+}
 
 
-  ngOnInit(): void {
-  }
 
-  ngAfterContentInit(): void {
-    this.totalTargetCurrency = (this.amount/this.currencyValueFrom)* this.currencyValutTo;
-  }
+proceed() {
+const tranferData = {
+    "transactionId": Math.floor((Math.random() * 100) + 1),
+    "senderId": 1,
+    "receiverId": 1,
+    "transactionAmount": this.transactionTotal,
+    "senderPaymentMethod": null,
+    "senderCardNumber": 0,
+    "senderCardExpiry": "string",
+    "senderNameOnCard": "string",
+    "receiverPaymentMethod": null,
+    "receiverAccountNumber": this.dataService.getAccountNumber(),
+    "receiverIban": "string",
+    "transactionType": null,
+    "fxRate": "string",
+    "exchangeFee": this.transactionFee,
+    "receiverPayout": 0,
+    "senderCurrency": "INR",
+    "receiverCurrency": this.targetCurrency,
+    "receiverCountryIso": "string",
+    "mtcn": null,
+    "transactionStatus": "Initiated",
+    "transactionDate": new Date(),
+    "thirdPartyRefId": null,
+    "createdBy": "string",
+    "createdOn": new Date(),
+    "modifiedBy": null,
+    "modifiedOn": new Date(),
+    "settlementRefId": null,
+    "transactionSettledOn": null,
+    "refundRefId": null,
+    "remarks": null
+  };
 
-  next(){
-    // this.subTitle = "Exachange Rate"
-    this.testing = !this.testing;
-    if(this.testing){
-      this.subTitle = "Exachange Rate"
-    } else {
-      this.subTitle= "To know the exact exchange rate and pricing summary, select a payment and payout method."
-    }
-  }
+  this.httpService.saveTransaction(tranferData).subscribe( ()=>{
+    const message = 'Transaction Completed Successfully';
+    this.snackBar.open(message,'Close',{duration: 2000,   panelClass: 'app-notification-success',}, );
+  });
 
-  proceed(){
-    let message = 'Transaction Completed Successfull';
-    this._snackBar.open(message,'Close',{duration: 3000});
-  }
+  setTimeout(() => {
+    this.router.navigate(['/sender']);
+  }, 1000);
+}
 
-  cancel(){
-   let message = 'Transaction Cancelled';
-    this._snackBar.open(message,'Close',{duration: 3000});
-  }
-
+cancel(){
+  const message = 'Transaction Cancelled';
+  this.snackBar.open(message,'Close',{duration: 2000});
+   setTimeout(() => {
+    this.router.navigate(['/sender']);
+  }, 1000);
+}
 }

@@ -1,22 +1,20 @@
 .mat-card{
    background-color: #f3faff;
-   // color: #232323;
    color: #44433D;
-   background-color: #f3faff;
    font-size: 11px;
    line-height: 16px;
-   padding: 30px 20px;
-   // transition: none !important;
+   padding: 30px 30px 60px 30px;
    box-shadow: none !important;
 }
 
-.mat-chip {
-   transition: none !important;
-   box-shadow: none !important;
+.main-container {
+   padding: 10px;
 }
+
 
 .exchange-rate {
    font-size: 165%;
+   float: right;
    display: block;
    font-weight: 400;
    margin-top: 5px;
@@ -34,28 +32,23 @@ hr {
    line-height: 16px;
 }
 
-.summary-widget-row {
-   width: 100%;
-   display: inline-block;
-}
 .padding-bottom-10 {
    padding-bottom: 10px;
 }
 .padding-bottom-20 {
    padding-bottom: 20px;
 }
-.sum-wid-ff {
-   font-family: "Open Sans",sans-serif;
-}
+
 .font18 {
    font-size: 18px!important;
 }
-.wu-superscript {
+.superscript {
    font-size: 9px;
    top: -0.01em;
    left: -0.4em;
    letter-spacing: -.6px;
    font-family: 'Open Sans',sans-serif;
+   left: 0;
 }
 
 .padding-bottom-15 {
@@ -65,21 +58,46 @@ hr {
    font-size: 20px;color: #44433D;
 }
 
-.subTitle2{
-   line-height: 16px; 
-   font-family: sans-serif;
-   font-size: 17px;
-   line-height: 25px;
-}
-
-.actionButtons{
+.action-buttons{
    float:right;
     padding-top: 10px;
      display: flex;
       gap: 20px;
 }
 
-.textFields{
+.text-fields{
    text-align: right;
    font-size: 14px;
+}
+
+.font14{
+   font-size: 14px;
+}
+
+.btn-primary {
+   background-color: #045F86;
+   border-color: #045F86;
+   color: #fff;
+   border-radius: 3px;
+   padding: 8px;
+   margin: 30px 0 20px;
+   font-size: 18px;
+   line-height: 1;
+}
+
+.total-class{
+   padding-left: 81.5%;
+}
+
+.fee-class{
+   padding-left: 82%;
+}
+
+.transfer-Class {
+   padding-left: 80%;
+}
+
+.field-value{
+   float: right;  
+   font-size: 18px;
 }

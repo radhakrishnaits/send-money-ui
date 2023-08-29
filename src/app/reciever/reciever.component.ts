@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators ,FormsModule,NgForm, FormControl, AbstractControl } from '@angular/forms';  
 import { RecieverService } from '../services/reciever.service';
 import Validation from '../utils/validation';
+import { DataService } from '../data.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-reciever',
@@ -22,8 +24,8 @@ export class RecieverComponent implements OnInit {
     branchName: new FormControl({disabled:true}),
   });
 
-  constructor(private formBuilder: FormBuilder, private recieverService: RecieverService,
-    private router: Router) {
+  constructor(private formBuilder: FormBuilder, private recieverService: RecieverService,private dataService: DataService,
+    private httpService: HttpService, private router: Router) {
     this.recieverForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -82,7 +84,10 @@ export class RecieverComponent implements OnInit {
 
   searchIfscCode() {}
 
-  
+  onAccountConfimation(){
+    let accountNumber = this.recieverForm.controls['accountNumber'].value;
+    this.dataService.setAccountDetails(accountNumber);
+  }
 
   onFormSubmit(formData: any) {
     
@@ -97,7 +102,7 @@ export class RecieverComponent implements OnInit {
     this.recieverService.reciever = formData; // for set
     console.log('-------------------');  
     console.log(this.recieverService.reciever);   // for get
-    this.recieverService.postRecieverDetails(formData).subscribe(
+    this.httpService.postRecieverDetails(formData).subscribe(
       (response) => {
         console.log('Response from backend:', response);
         this.navigateToCard();

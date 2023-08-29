@@ -26,13 +26,13 @@
         <div class="heading3">
             <mat-form-field class="sender-half-width" appearance="outline">
                 <mat-label>Send Amount</mat-label>
-                <input type="text" placeholder="" aria-label="String" matInput  />
-                <span matSuffix>USD</span>
+                <input type="number" formControlName="senderMoney" (blur)="onSendMoneyChange()" placeholder="" aria-label="String" matInput  />
+                <span matSuffix>INR</span>
             </mat-form-field>
             <i class="fa-solid fa-right-left"></i>
             <mat-form-field class="sender-half-width" appearance="outline">
                 <mat-label>Receive Amount</mat-label>
-                <input type="text" placeholder="" aria-label="String" matInput />
+                <input type="text" placeholder=""  formControlName="receiverMoney" aria-label="String" matInput />
                 <span matSuffix>{{recieverCurrencyCode}}</span>
             </mat-form-field>
         </div>
@@ -56,9 +56,8 @@
         </div>
       </div>
       <hr>
-      <button mat-raised-button color="primary">Primary</button>
     </form>
-    <button (click)="navigateToReciever()" mat-raised-button data-linkname="button-smo-continue" amplitude-id="button-smo-continue" class="btn btn-primary btn-lg btn-block no-margin ng-star-inserted" aria-label="Continue to next page">
+    <button (click)="navigateToReciever()" [disabled]="!senderForm.valid" mat-raised-button data-linkname="button-smo-continue" amplitude-id="button-smo-continue" class="btn btn-primary btn-lg btn-block no-margin ng-star-inserted" aria-label="Continue to next page">
         <bdi _ngcontent-serverapp-c140="" class="ng-scope">Continue</bdi>
     </button>
 </div>

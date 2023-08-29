@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Observable, startWith, map } from 'rxjs';
 import countries from 'src/country.json';
+import { DataService } from '../data.service';
+import { HttpService } from '../http.service';
 
 interface Country {  
   currencyId: Number;  
@@ -23,7 +25,7 @@ interface Option {
   templateUrl: './sender.component.html',
   styleUrls: ['./sender.component.scss']
 })
-export class SenderComponent implements OnInit {
+export class SenderComponent implements OnInit{
 
   senderForm!: FormGroup;
   countries: Country[] = countries;
@@ -31,15 +33,20 @@ export class SenderComponent implements OnInit {
   filteredOptions!: Observable<Option[]>; 
   recieverCurrencyCode: string = "INR";
 
-  constructor(private fb: FormBuilder,private router: Router){
+  constructor(private fb: FormBuilder,private router: Router, private dataService: DataService, private http: HttpService){
 
     this.senderForm = this.fb.group({
       countryName: new FormControl({id: 89, label: 'India', currencyCode: 'INR'}, Validators.required),
+      senderMoney:['',Validators.required],
+      receiverMoney: ['',Validators.required],
     });
   }
 
 
   ngOnInit() {
+    this.senderForm.controls['senderMoney'].valueChanges.subscribe(amount=>{
+      this.dataService.setTranferAmount(amount);
+    });
     this.filteredOptions = this.senderForm.controls['countryName'].valueChanges.pipe(
       startWith(''),
       map((value: string|Option) => {
@@ -50,7 +57,6 @@ export class SenderComponent implements OnInit {
       }));
   }
  
-
   private _filter(options: Option[] , label: string): Option[] {
     const value = label.trim().toLowerCase();
     return options.filter((option: Option) => {
@@ -70,8 +76,23 @@ export class SenderComponent implements OnInit {
   }
 
   selectedCountry(event: any){
-    console.log(event)
     this.recieverCurrencyCode = event.currencyCode;
+    this.dataService.setCurrencyCode(this.recieverCurrencyCode);
+    let resAmount=this.senderForm.controls['senderMoney'].value;
+    this.checkTransactionRates(this.recieverCurrencyCode, resAmount);
+  }
+
+  onSendMoneyChange(){
+   let resAmount=this.senderForm.controls['senderMoney'].value;
+    this.checkTransactionRates(this.recieverCurrencyCode, resAmount);
+  }
+
+  checkTransactionRates(recieverCode: any, resAmount:1){
+    this.http.getTransactionRates(recieverCode, resAmount).subscribe((data)=>{
+      this.senderForm.patchValue({
+        'receiverMoney': data.receiverAmount
+      })
+  });
   }
 
   displayLabelFn(option: Option|null) {
