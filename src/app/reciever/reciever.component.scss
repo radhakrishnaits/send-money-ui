@@ -1,16 +1,16 @@
-.full-width{
+.full-width {
     width: 100%;
 }
 
-.top-padding{
+.top-padding {
     padding-top: 3px;
 }
 
-.margin-left mat-radio-button:not(:first-child){
-    margin-left:10px;
+.margin-left mat-radio-button:not(:first-child) {
+    margin-left: 10px;
 }
 
-.form-container{
+.form-container {
     margin: 10px 100px;
 }
 
@@ -35,7 +35,7 @@ button {
 }
 
 @media only screen and (max-width : 768px) {
-    .form-container{
+    .form-container {
         margin: 10px;
     }
-  }
+}

@@ -1,8 +1,8 @@
-
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators ,FormsModule,NgForm, FormControl, AbstractControl } from '@angular/forms';  
-import { RecieverService } from '../services/reciever.service';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';  
+import { DataService } from '../data.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-card',
@@ -18,8 +18,8 @@ export class CardComponent implements OnInit {
     ccv: new FormControl(''),
   });
 
-  constructor(private formBuilder: FormBuilder, private recieverService: RecieverService,
-    private router: Router) {
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService,
+    private dataService: DataService, private router: Router) {
     this.cardForm = this.formBuilder.group({
       nameOnCard: ['', Validators.required],
       cardNumber: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(16)]],
@@ -27,8 +27,6 @@ export class CardComponent implements OnInit {
       ccv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]],
       })
    }
-   
- 
 
   ngOnInit(): void {
   }
@@ -38,22 +36,15 @@ export class CardComponent implements OnInit {
   }
 
   onCardFormSubmit(formData: any) {
-    console.log(formData);
     if (this.cardForm.valid) {
       this.navigateToSummary();
     }
-    // delete formData.cAccountNumber;
-    // delete formData.bankName;   
-    // delete formData.branchName;
-    // formData['country'] = "India";
-    // formData['senderID'] = 0;
-    // formData['status'] = "success";
 
-    // console.log(formData); 
-    // this.recieverService.reciever = formData; // for set
-    // console.log('-------------------');  
-    // console.log(this.recieverService.reciever);   // for get
-    // this.recieverService.postRecieverDetails(formData).subscribe(
+    this.dataService.card = formData; // for set
+    console.log('-------------------');  
+    console.log(this.dataService.card);   // for get
+
+    // this.httpService.postCardDetails(formData).subscribe(
     //   (response) => {
     //     console.log('Response from backend:', response);
     //     this.navigateToSummary();

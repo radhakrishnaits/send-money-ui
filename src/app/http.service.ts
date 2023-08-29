@@ -27,14 +27,16 @@ export class HttpService {
       catchError(this.handleError)
     )
   }
-
   
-postRecieverDetails(formData:any) {
-  return this.http.post(`${environment.baseUrl+'beneficiary/add'}` ,formData);
-}
+  postRecieverDetails(formData:any) {
+    return this.http.post(`${environment.baseUrl+'beneficiary/add'}` ,formData);
+  }
+
+  postCardDetails(formData:any) {
+    return this.http.post(`${environment.baseUrl+'add'}` ,formData);
+  }
 
   private handleError(err: HttpErrorResponse) {
-
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
         errorMessage = `An error occurred: ${err.error.message}`;

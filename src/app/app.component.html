@@ -2,7 +2,11 @@
 <div class="app-container">
   <app-header></app-header>
   <!-- Other app content -->
+
+  <mat-spinner class="loading" [diameter]="50" *ngIf="spinnerService.visibility | async">
+  </mat-spinner>
+
   <router-outlet></router-outlet>
-  
+
   <app-footer></app-footer>
 </div>

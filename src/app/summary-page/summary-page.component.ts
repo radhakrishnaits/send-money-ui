@@ -24,11 +24,13 @@ export class SummaryPageComponent implements OnInit {
   transactionTotal=0;
   totalTargetCurrency = 0;
   moneyTobeTransfer=0 ;
+  cardDetails: any;
 
  ngOnInit(): void {
     this.amount = this.dataService.amount;
     this.currencyTarget= this.dataService.currencyCode;
     this.getTransactioRates();
+    this.cardDetails = this.dataService.card;
 }
 
 getTransactioRates(){
@@ -51,9 +53,9 @@ const tranferData = {
     "receiverId": 1,
     "transactionAmount": this.transactionTotal,
     "senderPaymentMethod": null,
-    "senderCardNumber": 0,
-    "senderCardExpiry": "string",
-    "senderNameOnCard": "string",
+    "senderCardNumber": Number(this.cardDetails.cardNumber),
+    "senderCardExpiry": this.cardDetails.cardExpiry,
+    "senderNameOnCard": this.cardDetails.nameOnCard,
     "receiverPaymentMethod": null,
     "receiverAccountNumber": this.dataService.getAccountNumber(),
     "receiverIban": "string",

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpinnerService } from './services/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'send-money';
 
-  constructor() { }
+  constructor(public spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
   }
