@@ -34,19 +34,17 @@ export class SummaryPageComponent implements OnInit {
 }
 
 getTransactioRates(){
- 
-  this.httpService.getTransactionRates(this.currencyTarget, 1).subscribe((data)=>{
-    this.targetCurrency =data.receiverAmount;
-    console.log('test');
+    this.httpService.getTransactionRates(this.currencyTarget, 1).subscribe((data)=>{
+    this.targetCurrency =Math.abs(data.receiverAmount);
     this.transactionFee = data.commission;
     this.transactionTotal =  this.amount + this.transactionFee;
-    this.moneyTobeTransfer =  Math.round( this.amount * this.targetCurrency);
+    const total =  Math.round( this.amount * this.targetCurrency);
+    this.moneyTobeTransfer =  Math.abs(total);
   });
 }
 
 
-
-proceed() {
+transferMoney() {
 const tranferData = {
     "transactionId": Math.floor((Math.random() * 100) + 1),
     "senderId": 1,
@@ -70,7 +68,7 @@ const tranferData = {
     "transactionStatus": "Initiated",
     "transactionDate": new Date(),
     "thirdPartyRefId": null,
-    "createdBy": "string",
+    "createdBy": this.cardDetails.nameOnCard,
     "createdOn": new Date(),
     "modifiedBy": null,
     "modifiedOn": new Date(),
@@ -90,7 +88,7 @@ const tranferData = {
   }, 1000);
 }
 
-cancel(){
+cancelTransaction(){
   const message = 'Transaction Cancelled';
   this.snackBar.open(message,'Close',{duration: 2000});
    setTimeout(() => {
