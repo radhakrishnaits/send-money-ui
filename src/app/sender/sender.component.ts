@@ -107,7 +107,7 @@ export class SenderComponent implements OnInit{
   }
 
   navigateToReciever() {
-    this.router.navigate(['/reciever']);
+    this.router.navigate(['/receiver']);
   }
 }
 

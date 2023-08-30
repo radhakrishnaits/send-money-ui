@@ -26,24 +26,28 @@ export class RecieverComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private dataService: DataService,
     private httpService: HttpService, private router: Router) {
     this.recieverForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required,
+        Validators.pattern('^[A-Za-z][A-Za-z0-9_@-]{0,50}$')
+      ]],
+      lastName: ['', [Validators.required,
+        Validators.pattern('^[A-Za-z][A-Za-z0-9_@-]{0,50}$')
+      ]],
       accountNumber: ['', [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(14)
+        Validators.maxLength(15),
+        Validators.pattern('[0-9]{10,15}$')
       ]],
       cAccountNumber: ['', Validators.compose([
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(14)])
+        Validators.maxLength(15),
+        Validators.pattern('[0-9]{10,15}$')
+      ])
       ],
       ifscCode: ['', [
         Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(11),
         Validators.pattern('[A-Za-z]{4}[A-Z0-9a-z]{6,7}$')  //^[A-Za-z]{4}[0-9]{6,7}$
-
       ]],
       bankName: [''],
       branchName: [''],

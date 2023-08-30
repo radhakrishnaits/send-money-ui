@@ -21,10 +21,22 @@ export class CardComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private httpService: HttpService,
     private dataService: DataService, private router: Router) {
     this.cardForm = this.formBuilder.group({
-      nameOnCard: ['', Validators.required],
-      cardNumber: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(16)]],
-      cardExpiry: ['', Validators.required],
-      ccv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]],
+      nameOnCard: ['', [Validators.required,
+        Validators.pattern('^[A-Za-z][A-Za-z0-9_@-]{0,50}$')
+      ]],
+      cardNumber: ['', [Validators.required, 
+        Validators.minLength(12), 
+        Validators.maxLength(16),
+        Validators.pattern('[0-9]{12,16}$')
+      ]],
+      cardExpiry: ['', [Validators.required,
+        // Validators.pattern('^((0[1-9]|1[0-2])\/\d{2})$') //[A-Za-z]{4}[A-Z0-9a-z]{6,7}$
+      ]],
+      ccv: ['', [Validators.required,
+        Validators.minLength(3), 
+        Validators.maxLength(4),
+        Validators.pattern('[0-9]{3,4}$')
+      ]],
       })
    }
 
@@ -44,7 +56,15 @@ export class CardComponent implements OnInit {
     console.log('-------------------');  
     console.log(this.dataService.card);   // for get
 
-    // this.httpService.postCardDetails(formData).subscribe(
+    const data = {
+        cardExpiry: formData.cardExpiry,
+        cardNumber: Number(formData.cardNumber),
+        nameOnCard: formData.nameOnCard,
+        status: "",
+        userId: 0
+    }
+
+    // this.httpService.postCardDetails(data).subscribe(
     //   (response) => {
     //     console.log('Response from backend:', response);
     //     this.navigateToSummary();
@@ -56,6 +76,18 @@ export class CardComponent implements OnInit {
     //   }
     // );
   } 
+  
+   isCCExpired() {
+    const cardExpiry=  this.cardForm.controls['cardExpiry'].value;
+    let out = false;
+    if (cardExpiry){
+      const [mm,yy] = cardExpiry.split("/");
+      const dateObj = new Date(+yy + 2000,mm-1,15); // months are 0 based and don't take the 1st due to timezones
+      console.log(dateObj);
+      out = dateObj.getTime() < new Date().getTime();
+    }
+    return out;
+  }
 
   navigateToSummary() {
     this.router.navigate(['/summary']);
