@@ -95,7 +95,7 @@ export class SenderComponent implements OnInit{
       })
   });
 
-  this.convertionURL = "1.00 INR = ` {{this.senderForm.controls['receiverMoney'].value}}` + ` {{recieverCode}}`";
+  this.convertionURL = "1.00 INR = "+ `{{this.senderForm.controls['receiverMoney'].value}}` + ` {{recieverCode}}`;
   }
 
   displayLabelFn(option: Option|null) {
