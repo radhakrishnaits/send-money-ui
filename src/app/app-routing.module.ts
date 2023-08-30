@@ -7,7 +7,7 @@ import { CardComponent } from './card/card.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sender', pathMatch: 'full' },
-  { path: 'reciever', component: RecieverComponent },
+  { path: 'receiver', component: RecieverComponent },
   { path: 'sender' , component: SenderComponent},
   { path: 'summary' , component: SummaryPageComponent},
   { path: 'card' , component: CardComponent}

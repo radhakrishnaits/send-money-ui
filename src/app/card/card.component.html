@@ -14,6 +14,9 @@
 					</mat-form-field>
 					<div *ngIf="card['nameOnCard'].touched && card['nameOnCard'].errors" class="invalid-feedback">
 						<div *ngIf="card['nameOnCard'].errors['required']">Name is required</div>
+                        <div *ngIf="card['nameOnCard'].errors['pattern']">
+							Please specify a valid name
+						</div>
 					</div>
 				</div>
 				
@@ -24,6 +27,9 @@
 					</mat-form-field>
 					<div *ngIf="card['cardNumber'].touched && card['cardNumber'].errors" class="invalid-feedback">
 						<div *ngIf="card['cardNumber'].errors['required']">Please enter a valid card number</div>
+                        <div *ngIf="card['cardNumber'].errors['pattern']">
+							Please specify a valid crad number (12-16 digits)
+						</div>
 					</div>
 				</div>
 				
@@ -34,6 +40,9 @@
 					</mat-form-field>
 					<div *ngIf="card['cardExpiry'].touched && card['cardExpiry'].errors" class="invalid-feedback">
 						<div *ngIf="card['cardExpiry'].errors['required']">Enter an expiry date</div>
+                        <div *ngIf="card['cardExpiry'].errors['pattern']">
+							Card expiry date should be greater then current date
+						</div>
 					</div>
 				</div>
 				<div class="col-md-6 card-ccv"> 
@@ -43,6 +52,9 @@
 					</mat-form-field>
 					<div *ngIf="card['ccv'].touched && card['ccv'].errors" class="invalid-feedback">
 						<div *ngIf="card['ccv'].errors['required']">Please enter CVV</div>
+                        <div *ngIf="card['ccv'].errors['pattern']">
+							Please specify a valid CVV
+						</div>
 					</div>
 				</div>
 				
