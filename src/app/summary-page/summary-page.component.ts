@@ -38,14 +38,8 @@ getTransactioRates(){
     this.targetCurrency = Math.abs(data.fxrate);
     this.transactionFee = data.commission;
     this.transactionTotal =  this.amount + this.transactionFee;
-    // const total =  Math.round( this.amount * this.targetCurrency);
-    // this.moneyTobeTransfer =  Math.abs(total);
   });
   this.httpService.getTransactionRates(this.currencyTarget, this.amount).subscribe((data)=>{
-    // this.targetCurrency =Math.abs(data.receiverAmount);
-    // this.transactionFee = data.commission;
-    // this.transactionTotal =  this.amount + this.transactionFee;
-    // const total =  Math.round( this.amount * this.targetCurrency);
     this.moneyTobeTransfer =  data.receiverAmount;
   });
 }
@@ -64,8 +58,8 @@ const tranferData = {
     "receiverPaymentMethod": null,
     "receiverAccountNumber": this.dataService.getAccountNumber(),
     "receiverIban": "string",
-    "transactionType": null,
-    "fxRate": "string",
+    "transactionType": "Card",
+    "fxRate":  this.targetCurrency,
     "exchangeFee": this.transactionFee,
     "receiverPayout": 0,
     "senderCurrency": "INR",
@@ -89,7 +83,6 @@ const tranferData = {
     const message = 'Transaction Completed Successfully';
     this.snackBar.open(message,'Close',{duration: 2000,   panelClass: 'app-notification-success',}, );
   });
-
   setTimeout(() => {
     this.router.navigate(['/sender']);
   }, 1000);
