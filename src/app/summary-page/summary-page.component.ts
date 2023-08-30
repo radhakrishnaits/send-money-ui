@@ -35,11 +35,18 @@ export class SummaryPageComponent implements OnInit {
 
 getTransactioRates(){
     this.httpService.getTransactionRates(this.currencyTarget, 1).subscribe((data)=>{
-    this.targetCurrency =Math.abs(data.receiverAmount);
+    this.targetCurrency = Math.abs(data.fxrate);
     this.transactionFee = data.commission;
     this.transactionTotal =  this.amount + this.transactionFee;
-    const total =  Math.round( this.amount * this.targetCurrency);
-    this.moneyTobeTransfer =  Math.abs(total);
+    // const total =  Math.round( this.amount * this.targetCurrency);
+    // this.moneyTobeTransfer =  Math.abs(total);
+  });
+  this.httpService.getTransactionRates(this.currencyTarget, this.amount).subscribe((data)=>{
+    // this.targetCurrency =Math.abs(data.receiverAmount);
+    // this.transactionFee = data.commission;
+    // this.transactionTotal =  this.amount + this.transactionFee;
+    // const total =  Math.round( this.amount * this.targetCurrency);
+    this.moneyTobeTransfer =  data.receiverAmount;
   });
 }
 
