@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
@@ -29,8 +29,8 @@ export class SummaryPageComponent implements OnInit {
  ngOnInit(): void {
     this.amount = this.dataService.amount;
     this.currencyTarget= this.dataService.currencyCode;
-    this.getTransactioRates();
     this.cardDetails = this.dataService.card;
+    // this.getTransactioRates();
 }
 
 getTransactioRates(){
@@ -45,7 +45,7 @@ getTransactioRates(){
 }
 
 
-transferMoney() {
+sendMoneyToBeneficiary() {
 const tranferData = {
     "transactionId": Math.floor((Math.random() * 100) + 1),
     "senderId": 1,
